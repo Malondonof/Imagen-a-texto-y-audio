@@ -9,17 +9,14 @@ from PIL import Image
 from gtts import gTTS
 from googletrans import Translator
 
-# Ruta de la carpeta donde estarán las imágenes
-IMAGE_FOLDER = "imagen a texto"
+# Ruta de la carpeta donde están las imágenes y demás archivos
+BASE_DIR = "imagenatexto"
+IMAGE_FOLDER = os.path.join(BASE_DIR, "imagen a texto")
 os.makedirs(IMAGE_FOLDER, exist_ok=True)
 
-# Verificar si la imagen 'afterlifes.jpeg' existe en la carpeta correcta
-image_path = os.path.join("imagenatexto", "afterlifes.jpeg")
-if os.path.exists(image_path):
-    image = Image.open(image_path)
-    st.image(image, caption="Afterlifes")
-else:
-    st.error(f"La imagen '{image_path}' no se encuentra en el directorio.")
+# Configurar la ruta de Tesseract si estás en Windows
+# En Linux/Mac no necesitas esto si Tesseract está en el PATH
+pytesseract.pytesseract.tesseract_cmd = os.path.join(BASE_DIR, 'Tesseract-OCR', 'tesseract.exe')
 
 text = " "
 
@@ -47,6 +44,14 @@ def remove_files(n):
 remove_files(7)
 
 st.title("Reconocimiento Óptico de Caracteres (OCR)")
+
+# Mostrar imagen fija de ejemplo desde la carpeta "imagenatexto"
+image_path = os.path.join(BASE_DIR, "afterlifes.jpeg")
+if os.path.exists(image_path):
+    image = Image.open(image_path)
+    st.image(image, caption="Afterlifes")
+else:
+    st.error(f"No se encontró la imagen: {image_path}")
 
 st.subheader("Elige la fuente de la imagen, esta puede venir de la cámara o cargando un archivo")
 
