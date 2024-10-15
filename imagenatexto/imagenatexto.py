@@ -13,6 +13,14 @@ from googletrans import Translator
 IMAGE_FOLDER = "imagen a texto"
 os.makedirs(IMAGE_FOLDER, exist_ok=True)
 
+# Verificar si la imagen 'afterlifes.jpeg' existe
+image_path = "afterlifes.jpeg"
+if os.path.exists(image_path):
+    image = Image.open(image_path)
+    st.image(image, caption="Afterlifes")
+else:
+    st.error(f"La imagen '{image_path}' no se encuentra en el directorio.")
+
 text = " "
 
 def text_to_speech(input_language, output_language, text, tld):
@@ -39,10 +47,6 @@ def remove_files(n):
 remove_files(7)
 
 st.title("Reconocimiento Óptico de Caracteres (OCR)")
-
-# Mostrar imagen fija de ejemplo
-image = Image.open("afterlifes.jpeg")
-st.image(image, caption="Afterlifes")
 
 st.subheader("Elige la fuente de la imagen, esta puede venir de la cámara o cargando un archivo")
 
