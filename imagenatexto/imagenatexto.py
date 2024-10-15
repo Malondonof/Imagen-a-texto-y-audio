@@ -53,7 +53,7 @@ remove_files(7)
 st.title("Reconocimiento Óptico de Caracteres (OCR)")
 
 # Mostrar imagen fija de ejemplo desde la carpeta "imagenatexto"
-image_path = os.path.join(BASE_DIR, "afterlifes.jpeg")
+image_path = os.path.join(BASE_DIR, "image_2024-10-15_110057995.png")
 if os.path.exists(image_path):
     image = Image.open(image_path)
     st.image(image, caption="Afterlifes")
