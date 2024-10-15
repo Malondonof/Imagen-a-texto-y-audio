@@ -13,8 +13,8 @@ from googletrans import Translator
 IMAGE_FOLDER = "imagen a texto"
 os.makedirs(IMAGE_FOLDER, exist_ok=True)
 
-# Verificar si la imagen 'afterlifes.jpeg' existe
-image_path = "afterlifes.jpeg"
+# Verificar si la imagen 'afterlifes.jpeg' existe en la carpeta correcta
+image_path = os.path.join("imagenatexto", "afterlifes.jpeg")
 if os.path.exists(image_path):
     image = Image.open(image_path)
     st.image(image, caption="Afterlifes")
